@@ -52,10 +52,10 @@ public class LeaderBoardPage extends javax.swing.JFrame {
                     {
                         score=rs.getString(2);
                     }
-                    count++;
-                    if("ADMIN1".equals(userid))
-                        continue;
                     
+                    if("winston pais".equals(userid))
+                        continue;
+                    count++;
                     model.addRow(new Object[]{count,userid,score});
                    
                 }

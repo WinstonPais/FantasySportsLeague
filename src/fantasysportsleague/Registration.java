@@ -324,6 +324,22 @@ public class Registration extends javax.swing.JFrame {
             }
         return String.valueOf(counter+1);
     }
+    boolean checkforemail(String email)
+    {
+        int atflag=0,dotflag=0;
+        for(int i=0;i<email.length();i++)
+        {
+            if(email.charAt(i)=='@')
+            {
+                atflag=1;
+            }
+            if(email.charAt(i)=='.')
+            {
+                dotflag=1;
+            }
+        }
+        return !(dotflag==1&&atflag==1);
+    }
     private void submitButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitButtonMouseClicked
         // TODO add your handling code here:
         String name=nameTextField.getText();
@@ -345,9 +361,24 @@ public class Registration extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Enter your Email");
         }
         else
+            if(checkforemail(email))
+        {
+            JOptionPane.showMessageDialog(null,"Enter a valid Email");
+        }
+        else
         if(phnoS.isEmpty())
         {
             JOptionPane.showMessageDialog(null,"Enter your Phone Number");
+        }
+        else
+        if(phnoS.length()!=10)
+        {
+            JOptionPane.showMessageDialog(null,"Enter a valid Phone Number");
+        }
+        else
+        if(!(phnoS.matches("[0-9]*")))
+        {
+            JOptionPane.showMessageDialog(null,"Enter a valid Phone Number");
         }
         else
         if("--Select--".equals(favTeam))
@@ -359,6 +390,11 @@ public class Registration extends javax.swing.JFrame {
             if(password.isEmpty()||confirmpassword.isEmpty())
             {
                 JOptionPane.showMessageDialog(null,"Enter a Password");
+            }
+            else
+            if(password.length()<6)
+            {
+                JOptionPane.showMessageDialog(null,"Enter a password of minimum 6 characters");
             }
         else
         if(password == null ? confirmpassword != null : !password.equals(confirmpassword))
